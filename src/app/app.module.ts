@@ -11,6 +11,8 @@ import { BookRoutingModule } from './book/book-routing.module';
 import { AuthorRoutingModule } from './author/author-routing.module';
 import { EditorialRoutingModule } from './editorial/editorial-routing.module';
 import { HttpErrorInterceptorService } from './interceptors/HttpErrorInterceptor.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,13 @@ import { HttpErrorInterceptorService } from './interceptors/HttpErrorInterceptor
     AuthorModule,
     BookRoutingModule,
     AuthorRoutingModule,
-    EditorialRoutingModule
+    EditorialRoutingModule,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
+    BrowserAnimationsModule
   ],
   providers: [
     provideClientHydration(),
