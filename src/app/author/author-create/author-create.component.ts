@@ -14,12 +14,11 @@ export class AuthorCreateComponent implements OnInit {
 
   authorForm!: FormGroup;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private toastr: ToastrService,
-    private authorService: AuthorService,
-    private router: Router
-  ) { }
+constructor(
+   private formBuilder: FormBuilder,
+   private toastr: ToastrService,
+   private authorService: AuthorService
+ ) { }
 
   ngOnInit() {
     this.authorForm = this.formBuilder.group({
@@ -31,9 +30,11 @@ export class AuthorCreateComponent implements OnInit {
   }
 
   createAuthor(author: Author){
-    console.info("The author was created: ", author)
-    this.toastr.success("Confirmation", "Author created")
-    this.authorForm.reset();
+    this.authorService.createAuthor(author).subscribe(author=>{
+      console.info("The author was created: ", author)
+      this.toastr.success("Confirmation", "Author created")
+      this.authorForm.reset();
+    })
   }
 
   cancelCreation(){
