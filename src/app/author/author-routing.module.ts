@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthorListComponent } from './author-list/author-list.component';
 import { AuthorDetailComponent } from './author-detail/author-detail.component';
+import { AuthorCreateComponent } from './author-create/author-create.component';
 
 
 const routes: Routes = [
@@ -9,6 +10,7 @@ const routes: Routes = [
      path: 'list',
      component: AuthorListComponent
    },
+   { path: 'create', component: AuthorCreateComponent },
    {
      path: ':id',
      component: AuthorDetailComponent
