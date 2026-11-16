@@ -30,13 +30,11 @@ export class AuthorCreateComponent implements OnInit {
     });
   }
 
-  createAuthor(author: Author) {
-    this.authorService.createAuthor(author).subscribe(() => {
-      this.toastr.success("Confirmation", "Author created");
-      this.authorForm.reset();
-      this.router.navigate(['/authors/list']);
-    });
-  }
+createAuthor(author: Author){
+   console.info("The author was created: ", author)
+   this.toastr.success("Confirmation", "Author created")
+   this.authorForm.reset();
+ }
 
   cancelCreation() {
     this.authorForm.reset();
