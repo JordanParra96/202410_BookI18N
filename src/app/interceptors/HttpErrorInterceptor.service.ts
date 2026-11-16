@@ -2,7 +2,8 @@ import {
   HttpEvent,
   HttpHandler,
   HttpRequest,
-  HttpErrorResponse
+  HttpErrorResponse,
+  HttpInterceptor
  } from '@angular/common/http';
  import { Observable, throwError } from 'rxjs';
  import { catchError } from 'rxjs/operators';
@@ -11,8 +12,8 @@ import {
  
  
  @Injectable()
- export class HttpErrorInterceptorService extends HttpErrorResponse {
-  constructor(private toastrService: ToastrService) { super(toastrService) }
+ export class HttpErrorInterceptorService implements HttpInterceptor {
+  constructor(private toastrService: ToastrService) { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request)
       .pipe(

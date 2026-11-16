@@ -12,7 +12,7 @@ import { AuthorRoutingModule } from './author/author-routing.module';
 import { EditorialRoutingModule } from './editorial/editorial-routing.module';
 import { HttpErrorInterceptorService } from './interceptors/HttpErrorInterceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr/toastr/toastr.module';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,11 @@ import { ToastrModule } from 'ngx-toastr/toastr/toastr.module';
     BookRoutingModule,
     AuthorRoutingModule,
     EditorialRoutingModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
     BrowserAnimationsModule
   ],
   providers: [
