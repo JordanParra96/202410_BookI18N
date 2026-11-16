@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Author } from '../author';
+import { AuthorService } from '../author.service';
 
 @Component({
   selector: 'app-author-create',
@@ -13,7 +16,9 @@ export class AuthorCreateComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private authorService: AuthorService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -23,5 +28,18 @@ export class AuthorCreateComponent implements OnInit {
       birthDate: ["", Validators.required],
       description: ["", [Validators.required, Validators.maxLength(100)]]
     });
+  }
+
+  createAuthor(author: Author) {
+    this.authorService.createAuthor(author).subscribe(() => {
+      this.toastr.success("Confirmation", "Author created");
+      this.authorForm.reset();
+      this.router.navigate(['/authors/list']);
+    });
+  }
+
+  cancelCreation() {
+    this.authorForm.reset();
+    this.router.navigate(['/authors/list']);
   }
 }
